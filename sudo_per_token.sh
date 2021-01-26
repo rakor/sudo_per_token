@@ -28,6 +28,8 @@ gpg-connect-agent "/datafile /tmp/$APPID" "SCD READKEY --advanced OPENPGP.3" /by
 sudo mv /tmp/$APPID /etc/poldi/localdb/keys/$APPID
 
 
-echo "auth required pam_poldi.so" | sudo tee /etc/pam.d/sudo_tmp
+echo "auth required pam_poldi.so" | sudo tee /etc/pam.d/sudo_tmp /etc/pam.d/polkit-1_tmp
 cat /etc/pam.d/sudo | sudo tee -a /etc/pam.d/sudo_tmp
+cat /etc/pam.d/polkit-1 | sudo tee -a /etc/pam.d/polkit-1_tmp
 sudo mv /etc/pam.d/sudo_tmp /etc/pam.d/sudo
+sudo mv /etc/pam.d/polkit-1_tmp /etc/pam.d/polkit-1
